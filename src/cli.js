@@ -77,7 +77,7 @@ export class lab {
         const name = this.hello()
         
         let correctStreak = 0;
-        console.log("Answer 'yes' if given number is prime. Otherwise answer 'no'.")
+        console.log(`Answer "yes" if given number is prime. Otherwise answer "no".`);
         while (correctStreak < 3) {
             const number = Math.floor(Math.random() * 10) + 2; // от 2 до 100
 
