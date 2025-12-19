@@ -111,31 +111,32 @@ export class lab {
     //
     static commonDivisor(){
         const name = this.hello()
-        console.log('Find the greatest common divisor of given numbers.')
-        let isCountCorrect = 0
-        while(isCountCorrect !== 3) {
-            var a = parseInt (new Random().next() * 10.0)
-            
-            var b = parseInt (new Random().next() * 10.0)
-            let result = 0
-            console.log('Question: ' + a + " " + b)
-            while(b !== 0){
-                result = b
-                b = a % b
-            }
-            const answer = readlineSync.question('Your answer:')
-            if(answer.toString() === result.toString()){
-                console.log('Correct!')
-                isCountCorrect += 1
-            }
-            else{
-                console.log("'" + answer + "' is wrong answer ;(. Correct answer was '" + result + "'.Let's try again, " + name)
-                break
-            }
-        }
-        if(isCountCorrect === 3){
-            console.log("Congratulations, " + name)
-        }
+  console.log(`Hello, ${name}!`);
+  console.log('Find the greatest common divisor of given numbers.');
+
+  let correctAnswersCount = 0;
+  const roundsToWin = 3;
+
+  while (correctAnswersCount < roundsToWin) {
+    const num1 = getRandomInt(1, 100); // числа побольше, как в примерах Hexlet
+    const num2 = getRandomInt(1, 100);
+
+    console.log(`Question: ${num1} ${num2}`);
+    const userAnswer = readlineSync.question('Your answer: ');
+    const correctAnswer = gcd(num1, num2);
+
+    if (Number(userAnswer) === correctAnswer) {
+      console.log('Correct!');
+      correctAnswersCount += 1;
+    } else {
+      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
+      console.log(`Let's try again, ${name}!`);
+      return; // завершаем игру при ошибке
+    }
+  }
+
+  // Если дошли сюда — выиграли
+  console.log(`Congratulations, ${name}!`);
     }
     static calc() {
     
