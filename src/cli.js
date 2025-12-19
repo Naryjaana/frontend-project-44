@@ -1,223 +1,202 @@
-import { Random } from 'random';
 import readlineSync from 'readline-sync';
 
-export class lab {
+export class BrainGames {
+  static hello() {
+    console.log('Welcome to the Brain Games!');
+    const name = readlineSync.question('May I have your name? ');
+    console.log(`Hello, ${name}!`);
+    return name;
+  }
 
+  static getProgression() {
+    const length = Math.floor(Math.random() * 6) + 5; // 5–10 элементов
+    const start = Math.floor(Math.random() * 20) + 1;
+    const step = Math.floor(Math.random() * 10) + 1;
+    const hiddenIndex = Math.floor(Math.random() * length);
 
-    static hello() {
-        console.log('Welcome to the Brain Games!'); // Проверьте заглавную W
-        const name = readlineSync.question('May I have your name? ');
-        console.log(`Hello, ${name}!`); // Проверьте формат вывода
-        return name;
-    }
-    static progressionInt(){
-    const length = Math.floor(Math.random() * 6) + 5; // 5-10 чисел
-    const start = Math.floor(Math.random() * 20) + 1; // Начальное число 1-20
-    const step = Math.floor(Math.random() * 10) + 1; // Шаг 1-10
-    const hiddenIndex = Math.floor(Math.random() * length); // Индекс скрытого числа
-    
     const progression = [];
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i < length; i += 1) {
       progression.push(start + i * step);
     }
-    
+
     const hiddenNumber = progression[hiddenIndex];
     progression[hiddenIndex] = '..';
-    
+
     return {
-      progression: progression.join(' '),
-      hiddenNumber: hiddenNumber.toString()
+      question: progression.join(' '),
+      answer: hiddenNumber.toString(),
     };
   }
 
-  // Запуск игры
   static progression() {
-    console.log('Welcome to the Brain Games!');
-    const name = this.hello()
-    console.log(`Hello, ${name}!`);
+    const name = this.hello();
     console.log('What number is missing in the progression?');
-    console.log('');
-    
+
+    let correctCount = 0;
     const rounds = 3;
-    
-    for (let round = 1; round <= rounds; round++) {
-      const { progression, hiddenNumber } = this.progressionInt();
-      console.log(`Question: ${progression}`);
-      
-      const answer = readlineSync.question('Your answer:')
-      const userAnswer = answer ? answer.trim() : '';
-      
-      if (userAnswer === hiddenNumber) {
+
+    while (correctCount < rounds) {
+      const { question, answer } = this.getProgression();
+      console.log(`Question: ${question}`);
+      const userAnswer = readlineSync.question('Your answer: ').trim();
+
+      if (userAnswer === answer) {
         console.log('Correct!');
-        this.score++;
+        correctCount += 1;
       } else {
-        console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${hiddenNumber}'.`);
+        console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${answer}'.`);
         console.log(`Let's try again, ${name}!`);
         return;
       }
-      
-      console.log('');
     }
-    
+
     console.log(`Congratulations, ${name}!`);
-    }  
-
-    static isPrime(n) {
-        if (n <= 1) return false;
-        if (n <= 3) return true;
-        if (n % 2 === 0 || n % 3 === 0) return false;
-
-        for (let i = 5; i * i <= n; i += 6) {
-            if (n % i === 0 || n % (i + 2) === 0) return false;
-        }
-
-        return true;
-    }
-    static prime(){
-        const name = this.hello()
-        
-        let correctStreak = 0;
-        console.log(`Answer "yes" if given number is prime. Otherwise answer "no".`);
-        while (correctStreak < 3) {
-            const number = Math.floor(Math.random() * 10) + 2; // от 2 до 100
-
-            const isPrime = this.isPrime(number);
-
-            const expectedAnswer = isPrime ? "yes" : "no";
-
-           
-            console.log('Question: ' + number)
-            const answer = readlineSync.question('Your answer:' )
-
-            const normalizedAnswer = answer.trim().toLowerCase();
-
-            if (normalizedAnswer !== "yes" && normalizedAnswer !== "no") {
-                console.log(`'${normalizedAnswer}' is wrong answer ;(. Correct answer was '${expectedAnswer}'.`);
-                console.log(`Let's try again, ${name}!`);
-                return;
-            }
-
-            if (normalizedAnswer === expectedAnswer) {
-                console.log("Correct");
-                correctStreak++;
-            } else {
-                const result = isPrime ? "yes" : "no";
-                console.log(`'${normalizedAnswer}' is wrong answer ;(. Correct answer was '${expectedAnswer}'.`);
-                console.log(`Let's try again, ${name}!`);
-                return;
-            }
-        }
-
-        console.log(`Congratulations, ${name}!`);
-    }
-    static gcd(a,b) {
-  a = Math.abs(a);
-  b = Math.abs(b);
-  while (b !== 0) {
-    const temp = b;
-    b = a % b;
-    a = temp;
-  }
-  return a;
-};
-    static commonDivisor(){
-        console.log('Welcome to the Brain Games!');
-  const name = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${name}!`);
-  console.log('Find the greatest common divisor of given numbers.');
-
-  let correctCount = 0;
-  const rounds = 3;
-
-  while (correctCount < rounds) {
-    const num1 = Math.floor(Math.random() * 100) + 1;
-    const num2 = Math.floor(Math.random() * 100) + 1;
-
-    console.log(`Question: ${num1} ${num2}`);
-    const userAnswer = readlineSync.question('Your answer: ').trim(); // trim() на всякий случай
-
-    const correctAnswer = this.gcd(num1, num2);
-
-    if (parseInt(userAnswer, 10) === correctAnswer) {  // parseInt для строкового ввода
-      console.log('Correct!');
-      correctCount += 1;
-    } else {
-      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-      console.log(`Let's try again, ${name}!`);
-      return; // Завершаем при ошибке
-    }
   }
 
-  console.log(`Congratulations, ${name}!`);
+  static isPrime(n) {
+    if (n <= 1) return false;
+    if (n <= 3) return true;
+    if (n % 2 === 0 || n % 3 === 0) return false;
+    for (let i = 5; i * i <= n; i += 6) {
+      if (n % i === 0 || n % (i + 2) === 0) return false;
+    }
+    return true;
   }
-    static calc() {
-    
-    const name = this.hello()
-    console.log(`Hello, ${name}!`);
-    
+
+  static prime() {
+    const name = this.hello();
+    console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
+
+    let correctCount = 0;
+    const rounds = 3;
+
+    while (correctCount < rounds) {
+      const number = Math.floor(Math.random() * 99) + 2; // 2–100
+      const correctAnswer = this.isPrime(number) ? 'yes' : 'no';
+
+      console.log(`Question: ${number}`);
+      const userAnswer = readlineSync.question('Your answer: ').trim().toLowerCase();
+
+      if (userAnswer === correctAnswer) {
+        console.log('Correct!');
+        correctCount += 1;
+      } else {
+        console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
+        console.log(`Let's try again, ${name}!`);
+        return;
+      }
+    }
+
+    console.log(`Congratulations, ${name}!`);
+  }
+
+  static gcd(a, b) {
+    let x = Math.abs(a);
+    let y = Math.abs(b);
+    while (y !== 0) {
+      const temp = y;
+      y = x % y;
+      x = temp;
+    }
+    return x;
+  }
+
+  static commonDivisor() {
+    const name = this.hello();
+    console.log('Find the greatest common divisor of given numbers.');
+
+    let correctCount = 0;
+    const rounds = 3;
+
+    while (correctCount < rounds) {
+      const num1 = Math.floor(Math.random() * 100) + 1;
+      const num2 = Math.floor(Math.random() * 100) + 1;
+      const correctAnswer = this.gcd(num1, num2);
+
+      console.log(`Question: ${num1} ${num2}`);
+      const userAnswer = readlineSync.question('Your answer: ').trim();
+
+      if (Number(userAnswer) === correctAnswer) {
+        console.log('Correct!');
+        correctCount += 1;
+      } else {
+        console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
+        console.log(`Let's try again, ${name}!`);
+        return;
+      }
+    }
+
+    console.log(`Congratulations, ${name}!`);
+  }
+
+  static calc() {
+    const name = this.hello();
     console.log('What is the result of the expression?');
 
     let correctCount = 0;
     const rounds = 3;
 
     while (correctCount < rounds) {
-        // Генерируем числа от 1 до 20
-        const a = Math.floor(Math.random() * 10) + 1;
-        const b = Math.floor(Math.random() * 10) + 1;
+      const a = Math.floor(Math.random() * 20) + 1;
+      const b = Math.floor(Math.random() * 20) + 1;
+      const ops = ['+', '-', '*'];
+      const op = ops[Math.floor(Math.random() * ops.length)];
 
+      let result;
+      switch (op) {
+        case '+':
+          result = a + b;
+          break;
+        case '-':
+          result = a - b;
+          break;
+        case '*':
+          result = a * b;
+          break;
+        default:
+          result = 0;
+      }
 
-        const operations = ['+', '-', '*'];
-        const op = operations[Math.floor(Math.random() * operations.length)];
+      console.log(`Question: ${a} ${op} ${b}`);
+      const userAnswer = readlineSync.question('Your answer: ').trim();
 
-        let result;
-        switch (op) {
-            case '+': result = a + b; break;
-            case '-': result = a - b; break;
-            case '*': result = a * b; break;
-        }
-
-
-        console.log(`Question: ${a} ${op} ${b}`);
-
-        const answer = readlineSync.question('Your answer: ');
-
-
-        if (answer === result.toString()) {
-            console.log('Correct!');
-            correctCount += 1;
-        } else {
-            console.log(`'${answer}' is wrong answer ;(. Correct answer was '${result}'.`);
-            console.log(`Let's try again, ${name}!`);
-            return; // выходим — игра окончена
-        }
+      if (userAnswer === result.toString()) {
+        console.log('Correct!');
+        correctCount += 1;
+      } else {
+        console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${result}'.`);
+        console.log(`Let's try again, ${name}!`);
+        return;
+      }
     }
-
 
     console.log(`Congratulations, ${name}!`);
+  }
+
+  static parity() {
+    const name = this.hello();
+    console.log('Answer "yes" if the number is even, otherwise answer "no".');
+
+    let correctCount = 0;
+    const rounds = 3;
+
+    while (correctCount < rounds) {
+      const number = Math.floor(Math.random() * 100) + 1;
+      const correctAnswer = number % 2 === 0 ? 'yes' : 'no';
+
+      console.log(`Question: ${number}`);
+      const userAnswer = readlineSync.question('Your answer: ').trim().toLowerCase();
+
+      if (userAnswer === correctAnswer) {
+        console.log('Correct!');
+        correctCount += 1;
+      } else {
+        console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
+        console.log(`Let's try again, ${name}!`);
+        return;
+      }
     }
 
-    static parity() {
-        const name = this.hello();
-        console.log('Answer "yes" if the number is even, otherwise answer "no".');
-
-        let isCountCorrect = 0;
-        while (isCountCorrect < 3) {
-            const randomA = Math.floor(Math.random() * 100);
-            console.log(`Question: ${randomA}`);
-            const answer = readlineSync.question('Your answer: ');
-
-            const isEven = randomA % 2 === 0;
-            const correctAnswer = isEven ? 'yes' : 'no';
-
-            if (answer === correctAnswer) {
-                console.log('Correct!');
-                isCountCorrect += 1;
-            } else {
-                console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-                console.log(`Let's try again, ${name}!`);
-                return; // Выходим из функции при ошибке
-            }
-        }
-        console.log(`Congratulations, ${name}!`);
-    }
+    console.log(`Congratulations, ${name}!`);
+  }
 }
