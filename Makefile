@@ -4,3 +4,9 @@ brain-games:
 	node bin/brain-games.js
 publish:
 	npm publish --dry-run
+brain-calc:
+	node bin/brain-calc.js
+brain-grc:
+	node bin/brain-grc.js
+brain-prime:
+	node bin/brain-prime.js
