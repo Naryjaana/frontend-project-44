@@ -141,8 +141,8 @@ export class lab {
     
     const name = this.hello()
     console.log(`Hello, ${name}!`);
-
-
+    
+    console.log('What is the result of the expression?');
 
     let correctCount = 0;
     const rounds = 3;
