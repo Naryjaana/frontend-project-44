@@ -86,7 +86,7 @@ export class lab {
             const expectedAnswer = isPrime ? "yes" : "no";
 
            
-            console.log('Question:' + number)
+            console.log('Question: ' + number)
             const answer = readlineSync.question('Your answer:' )
 
             const normalizedAnswer = answer.trim().toLowerCase();
