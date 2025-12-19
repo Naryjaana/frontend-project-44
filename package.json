@@ -18,7 +18,11 @@
   "homepage": "https://github.com/Naryjaana/frontend-project-44#readme",
   "type": "module",
   "bin": {
-    "brain-games": "bin/brain-games.js"
+    "brain-games": "bin/brain-games.js",
+    "brain-even": "bin/brain-even.js",
+    "brain-calc": "bin/brain-calc.js",
+    "brain-prime": "bin/brain-prime.js",
+    "brain-progression": "bin/brain-progression.js"
   },
   "dependencies": {
     "random": "^5.4.1",
