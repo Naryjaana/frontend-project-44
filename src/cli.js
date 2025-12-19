@@ -4,13 +4,11 @@ import readlineSync from 'readline-sync';
 export class lab {
 
 
-    static hello(){
-        console.log('welcome to the Brain Games!') 
-    
-    const name = readlineSync.question('May I have your name?');
-    
-    console.log('Hello,' + name)
-    return name
+    static hello() {
+        console.log('Welcome to the Brain Games!'); // Проверьте заглавную W
+        const name = readlineSync.question('May I have your name? ');
+        console.log(`Hello, ${name}!`); // Проверьте формат вывода
+        return name;
     }
     static progressionInt(){
     const length = Math.floor(Math.random() * 6) + 5; // 5-10 чисел
@@ -190,38 +188,28 @@ export class lab {
  
     }
 
-    static parity(){
-    
-    const name = this.hello()
+    static parity() {
+        const name = this.hello();
+        console.log('Answer "yes" if the number is even, otherwise answer "no".');
 
-    console.log('Answer "yes" if the number is even, otherwise answer "no".')
-    
-    let isCountCorrect = 0
-    while(true) {
-    var randomA = parseInt (new Random().next() * 100.0)
+        let isCountCorrect = 0;
+        while (isCountCorrect < 3) {
+            const randomA = Math.floor(Math.random() * 100);
+            console.log(`Question: ${randomA}`);
+            const answer = readlineSync.question('Your answer: ');
 
-    console.log('Question:' + randomA) 
+            const isEven = randomA % 2 === 0;
+            const correctAnswer = isEven ? 'yes' : 'no';
 
-    const answer = readlineSync.question('Your answer:')
-
-    const hy = randomA % 2 === 0
-
-    if(answer === "yes" && hy){
-        console.log('Correct!')
-        isCountCorrect += 1
-    }else if(answer === "no" && !hy){
-        console.log('Correct!')
-        isCountCorrect += 1
-    }else{
-        console.log("'yes' is wrong answer ;(. Correct answer was 'no'.Let's try again, " + name)
-        break
+            if (answer === correctAnswer) {
+                console.log('Correct!');
+                isCountCorrect += 1;
+            } else {
+                console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
+                console.log(`Let's try again, ${name}!`);
+                return; // Выходим из функции при ошибке
+            }
+        }
+        console.log(`Congratulations, ${name}!`);
     }
-    if(isCountCorrect === 3){
-        console.log("Congratulations, " + name)
-        break
-    }
-}
-
-
-}   
 }
