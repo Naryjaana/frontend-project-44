@@ -148,10 +148,6 @@ export class lab {
 
   console.log(`Congratulations, ${name}!`);
   }
-
-  // Если дошли сюда — выиграли
-  console.log(`Congratulations, ${name}!`);
-    }
     static calc() {
     
     const name = this.hello()
