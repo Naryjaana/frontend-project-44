@@ -1,4 +1,4 @@
-import readlineSync from 'readline-sync';
+import readlineSync from 'readline-sync'
 
 export class lab {
   static hello() {
@@ -24,7 +24,7 @@ export class lab {
 
     return {
       question: progression.join(' '),
-      answer: hiddenNumber.toString()
+      answer: hiddenNumber.toString(),
     }
   }
 
