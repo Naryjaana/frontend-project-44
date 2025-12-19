@@ -118,7 +118,7 @@ export class lab {
             
             var b = parseInt (new Random().next() * 10.0)
             let result = 0
-            console.log('Question:' + a + " " + b)
+            console.log('Question: ' + a + " " + b)
             while(b !== 0){
                 result = b
                 b = a % b
