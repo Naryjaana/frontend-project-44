@@ -43,7 +43,8 @@ export class lab {
       if (userAnswer === answer) {
         console.log('Correct!')
         correctCount += 1
-      } else {
+      }
+      else {
         console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${answer}'.`)
         console.log(`Let's try again, ${name}!`)
         return
@@ -80,7 +81,8 @@ export class lab {
       if (userAnswer === correctAnswer) {
         console.log('Correct!')
         correctCount += 1
-      } else {
+      }
+      else {
         console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`)
         console.log(`Let's try again, ${name}!`)
         return
@@ -119,7 +121,8 @@ export class lab {
       if (Number(userAnswer) === correctAnswer) {
         console.log('Correct!')
         correctCount += 1
-      } else {
+      }
+      else {
         console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`)
         console.log(`Let's try again, ${name}!`)
         return
@@ -163,7 +166,8 @@ export class lab {
       if (userAnswer === result.toString()) {
         console.log('Correct!')
         correctCount += 1
-      } else {
+      }
+      else {
         console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${result}'.`)
         console.log(`Let's try again, ${name}!`)
         return
@@ -190,7 +194,8 @@ export class lab {
       if (userAnswer === correctAnswer) {
         console.log('Correct!')
         correctCount += 1
-      } else {
+      }
+      else {
         console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`)
         console.log(`Let's try again, ${name}!`)
         return
