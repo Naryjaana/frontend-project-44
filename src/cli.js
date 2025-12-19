@@ -67,10 +67,10 @@ export class lab {
     static isPrime(n) {
         if (n <= 1) return false;
         if (n <= 3) return true;
-        if (n % 2 === 0  n % 3 === 0) return false;
+        if (n % 2 === 0 || n % 3 === 0) return false;
 
         for (let i = 5; i * i <= n; i += 6) {
-            if (n % i === 0  n % (i + 2) === 0) return false;
+            if (n % i === 0 || n % (i + 2) === 0) return false;
         }
 
         return true;
@@ -79,26 +79,22 @@ export class lab {
         const name = this.hello()
         
         let correctStreak = 0;
-        console.log(Answer 'yes' if given number is prime. Otherwise answer 'no'.);
+        console.log("Answer 'yes' if given number is prime. Otherwise answer 'no'.")
         while (correctStreak < 3) {
-            const number = Math.floor(Math.random() * 99) + 2; // от 2 до 100
+            const number = Math.floor(Math.random() * 10) + 2; // от 2 до 100
 
             const isPrime = this.isPrime(number);
 
             const expectedAnswer = isPrime ? "yes" : "no";
 
+           
             console.log('Question:' + number)
-
-            const answer = readlineSync.question('Your answer: ');
-
-            if (answer === null) {
-                return;
-            }
+            const answer = readlineSync.question('Your answer:' )
 
             const normalizedAnswer = answer.trim().toLowerCase();
 
             if (normalizedAnswer !== "yes" && normalizedAnswer !== "no") {
-                console.log('${answer}' is wrong answer ;(. Correct answer was '${expectedAnswer}'. Let's try again, ${name});
+                console.log(`'${answer}' is wrong answer ;(. Correct answer was '${expectedAnswer}'. Let's try again, ${name}`);
                 return;
             }
 
@@ -107,34 +103,14 @@ export class lab {
                 correctStreak++;
             } else {
                 const result = isPrime ? "yes" : "no";
-                console.log('${answer}' is wrong answer ;(. Correct answer was '${result}'. Let's try again, ${name});
+                console.log(`'${answer}' is wrong answer ;(. Correct answer was '${result}'. Let's try again, ${name}`);
                 return;
             }
         }
 
-        console.log(Congratulations, ${name});
+        console.log(`Congratulations, ${name}`);
     }
-  
-            const limit = Math.sqrt(answer);
-            for (let i = 3; i <= limit; i += 2) {
-                if (number % i === 0 && answer === "yes") {
-                    console.log("'yes' is wrong answer ;(. Correct answer was 'no'.Let's try again, " + name)
-                    break
-                }else if(number % i !== 0  && answer === "no"){
-                    isCountCorrect++
-                    console.log('Correct!')
-                    continue
-                }
-            }
-            isCountCorrect++
-            console.log('Correct!')
-            continue
-        }
-        if(isCountCorrect === 3){
-            console.log("Congratulations, " + name)
-        }
 
-    }
     static commonDivisor(){
         const name = this.hello()
         console.log('Find the greatest common divisor of given numbers.')
