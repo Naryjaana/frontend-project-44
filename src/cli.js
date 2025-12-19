@@ -92,7 +92,8 @@ export class lab {
             const normalizedAnswer = answer.trim().toLowerCase();
 
             if (normalizedAnswer !== "yes" && normalizedAnswer !== "no") {
-                console.log(`'${answer}' is wrong answer ;(. Correct answer was '${expectedAnswer}'. Let's try again, ${name}`);
+                console.log(`'${normalizedAnswer}' is wrong answer ;(. Correct answer was '${expectedAnswer}'.`);
+                console.log(`Let's try again, ${name}!`);
                 return;
             }
 
@@ -101,7 +102,8 @@ export class lab {
                 correctStreak++;
             } else {
                 const result = isPrime ? "yes" : "no";
-                console.log(`'${answer}' is wrong answer ;(. Correct answer was '${result}'. Let's try again, ${name}`);
+                console.log(`'${normalizedAnswer}' is wrong answer ;(. Correct answer was '${expectedAnswer}'.`);
+                console.log(`Let's try again, ${name}!`);
                 return;
             }
         }
