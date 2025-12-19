@@ -146,7 +146,7 @@ export class lab {
     var operation = ["-","+","/","*"]
     var operationIndex = parseInt (new Random().next() * 3.0)
     var b = parseInt (new Random().next() * 10.0)
-    console.log('Question:' + a + " " + operation[operationIndex] + " " + b)
+    console.log('Question: ' + a + " " + operation[operationIndex] + " " + b)
     const answer = readlineSync.question('Your answer:')
     let result = 0;
     switch(operation[operationIndex]){
