@@ -108,31 +108,45 @@ export class lab {
 
         console.log(`Congratulations, ${name}`);
     }
-    //
+    static gcd(a,b) {
+  a = Math.abs(a);
+  b = Math.abs(b);
+  while (b !== 0) {
+    const temp = b;
+    b = a % b;
+    a = temp;
+  }
+  return a;
+};
     static commonDivisor(){
-        const name = this.hello()
+        console.log('Welcome to the Brain Games!');
+  const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}!`);
   console.log('Find the greatest common divisor of given numbers.');
 
-  let correctAnswersCount = 0;
-  const roundsToWin = 3;
+  let correctCount = 0;
+  const rounds = 3;
 
-  while (correctAnswersCount < roundsToWin) {
-    const num1 = getRandomInt(1, 100); // числа побольше, как в примерах Hexlet
-    const num2 = getRandomInt(1, 100);
+  while (correctCount < rounds) {
+    const num1 = Math.floor(Math.random() * 100) + 1;
+    const num2 = Math.floor(Math.random() * 100) + 1;
 
     console.log(`Question: ${num1} ${num2}`);
-    const userAnswer = readlineSync.question('Your answer: ');
-    const correctAnswer = gcd(num1, num2);
+    const userAnswer = readlineSync.question('Your answer: ').trim(); // trim() на всякий случай
 
-    if (Number(userAnswer) === correctAnswer) {
+    const correctAnswer = this.gcd(num1, num2);
+
+    if (parseInt(userAnswer, 10) === correctAnswer) {  // parseInt для строкового ввода
       console.log('Correct!');
-      correctAnswersCount += 1;
+      correctCount += 1;
     } else {
       console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
       console.log(`Let's try again, ${name}!`);
-      return; // завершаем игру при ошибке
+      return; // Завершаем при ошибке
     }
+  }
+
+  console.log(`Congratulations, ${name}!`);
   }
 
   // Если дошли сюда — выиграли
