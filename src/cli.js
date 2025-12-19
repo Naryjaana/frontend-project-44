@@ -108,7 +108,7 @@ export class lab {
 
         console.log(`Congratulations, ${name}`);
     }
-
+    //
     static commonDivisor(){
         const name = this.hello()
         console.log('Find the greatest common divisor of given numbers.')
