@@ -10,3 +10,5 @@ brain-grc:
 	node bin/brain-grc.js
 brain-prime:
 	node bin/brain-prime.js
+brain-even:
+	node bin/brain-even.js
