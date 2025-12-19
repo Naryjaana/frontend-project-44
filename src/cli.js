@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 import readlineSync from 'readline-sync'
 
 export class lab {
@@ -159,7 +157,7 @@ export class lab {
           result = 0
       }
 
-      console.log(`Question: ${a} ${op} ${b}`)
+      console.log('Question: ' + a + ' ' + op + ' ' + b)
       const userAnswer = readlineSync.question('Your answer: ').trim()
 
       if (userAnswer === result.toString()) {
