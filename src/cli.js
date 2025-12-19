@@ -106,7 +106,7 @@ export class lab {
             }
         }
 
-        console.log(`Congratulations, ${name}`);
+        console.log(`Congratulations, ${name}!`);
     }
     static gcd(a,b) {
   a = Math.abs(a);
