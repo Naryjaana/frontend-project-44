@@ -153,7 +153,7 @@ export class lab {
         const b = Math.floor(Math.random() * 10) + 1;
 
 
-        const operations = ['+', '-', '*', '/'];
+        const operations = ['+', '-', '*'];
         const op = operations[Math.floor(Math.random() * operations.length)];
 
         let result;
@@ -161,7 +161,6 @@ export class lab {
             case '+': result = a + b; break;
             case '-': result = a - b; break;
             case '*': result = a * b; break;
-            case '/': result = a / b; break;
         }
 
 
