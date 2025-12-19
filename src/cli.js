@@ -137,55 +137,51 @@ export class lab {
             console.log("Congratulations, " + name)
         }
     }
-    static calc(){
-    const name = this.hello()
-    console.log('What is the result of the expression?')
-    let isCountCorrect = 0
-    while(true) {
-    var a = parseInt (new Random().next() * 10.0)
-    var operation = ["-","+","/","*"]
-    var operationIndex = parseInt (new Random().next() * 3.0)
-    var b = parseInt (new Random().next() * 10.0)
-    console.log('Question: ' + a + " " + operation[operationIndex] + " " + b)
-    const answer = readlineSync.question('Your answer:')
-    let result = 0;
-    switch(operation[operationIndex]){
-        case "-":
-            result = a - b;
-            break;
-
-            case "+":
-            result = a + b;
-            break;
-
-            case "/":
-            result = a / b;
-            break;
-
-            case "*":
-            result = a * b;
-            break;
-    }
-    console.log(a + " " + operation[operationIndex] + " " + b + " " + result)
+    static calc() {
     
+    const name = this.hello()
+    console.log(`Hello, ${name}!`);
 
-    if(answer.toString() === "Infinity"){
-        console.log('Correct!')
-        isCountCorrect += 1
+
+
+    let correctCount = 0;
+    const rounds = 3;
+
+    while (correctCount < rounds) {
+        // Генерируем числа от 1 до 20
+        const a = Math.floor(Math.random() * 10) + 1;
+        const b = Math.floor(Math.random() * 10) + 1;
+
+
+        const operations = ['+', '-', '*', '/'];
+        const op = operations[Math.floor(Math.random() * operations.length)];
+
+        let result;
+        switch (op) {
+            case '+': result = a + b; break;
+            case '-': result = a - b; break;
+            case '*': result = a * b; break;
+            case '/': result = a / b; break;
+        }
+
+
+        console.log(`Question: ${a} ${op} ${b}`);
+
+        const answer = readlineSync.question('Your answer: ');
+
+
+        if (answer === result.toString()) {
+            console.log('Correct!');
+            correctCount += 1;
+        } else {
+            console.log(`'${answer}' is wrong answer ;(. Correct answer was '${result}'.`);
+            console.log(`Let's try again, ${name}!`);
+            return; // выходим — игра окончена
+        }
     }
-    if(answer.toString() === result.toString()){
-        console.log('Correct!')
-        isCountCorrect += 1
-    }else{
-        console.log("'" + answer + "' is wrong answer ;(. Correct answer was '" + result + "'.Let's try again, " + name)
-        break
-    }
-    if(isCountCorrect === 3){
-        console.log("Congratulations, " + name)
-        break
-    }
-}
- 
+
+
+    console.log(`Congratulations, ${name}!`);
     }
 
     static parity() {
